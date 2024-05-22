@@ -1,7 +1,9 @@
+//Importo todos los util que voy a utilizar en esta clase.//
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+//Añado los atributos de la clase persona.//
 class Persona {
     private String dni;
     private String correo;
@@ -13,6 +15,8 @@ class Persona {
     private String telefono;
     private int edad;
 
+    /*En el set DNI, hago que tenga que ser de 8 dígitos usando el .matches. Si el DNI introducido tiene 8 dígitos,
+     el DNI se guarda, mientras que si no tiene 8 dígitos (tiene menos o más de 8) entonces salta un mensaje de error.*/
     public boolean setDni(String dni) {
         if (dni.matches("\\d{8}")) {
             this.dni = dni;
@@ -22,7 +26,9 @@ class Persona {
             return false;
         }
     }
-//.//
+/*En el set del correo creo una plantilla que dice que el correo puede tener texto logos etc, pero que debe tener un @ y un . para seguir la plantilla
+ que usa un correo (correo33@correo.com) si cumple con las restricciones, se guarda. Le aplico dicha plantilla al correo que el
+ usuario me ingrese y le digo que si coincide, se guarda el correo, mientras que si no coincide salta el mensaje de error.*/
     public boolean setCorreo(String correo) {
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         Pattern pattern = Pattern.compile(regex);
@@ -36,6 +42,8 @@ class Persona {
         }
     }
 
+    /*Le digo que si la contraseña introducida por el usuario tiene una longitud mayor de 8 carácteres, es válida y por
+     tanto se guarda la contraseña. Si no es válida, no la guarda y salta el mensaje.*/
     public boolean setContrasena(String contrasena) {
         if (contrasena.length() > 8) {
             this.contrasena = contrasena;
@@ -66,6 +74,8 @@ class Persona {
         this.telefono = telefono;
     }
 
+    /*En el de edad, le decimos que si la edad es 18 o mayor a 18, guardamos la edad pues es mayor de edad.
+     Si por el contrario, la edad es menos de 18, salta el mensaje de que debe ser mayor de 18 años.*/
     public boolean setEdad(int edad) {
         if (edad >= 18) {
             this.edad = edad;
@@ -77,6 +87,7 @@ class Persona {
     }
 
     @Override
+    /*El texto que le pondrás al usuario para que vea sus datos.*/
     public String toString() {
         return "DNI: " + dni + "\n" +
                "Correo: " + correo + "\n" +
@@ -89,7 +100,9 @@ class Persona {
     }
 }
 public class RegistroUsuario {
-
+    /*Aquí le voy pidiendo los diferentes datos al usuario. En los métodos que tengo para comprobar que me ingrese los datos
+     de una forma específica, como la edad, la contraseña o el correo, le digo que mientras el método no de un return true,
+     siga pidiendo los datos, y si hace return true (que cumple los requisitos) entonces se guarda.*/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Persona persona = new Persona();
