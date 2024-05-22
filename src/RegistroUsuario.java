@@ -22,7 +22,7 @@ class Persona {
             return false;
         }
     }
-
+//.//
     public boolean setCorreo(String correo) {
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         Pattern pattern = Pattern.compile(regex);
